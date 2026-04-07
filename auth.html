@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastQ — Portal</title>
+    <link rel="preconnect" herf="https://fonts.googleapis.com">
+    <link rel="preconnect" herf="https://fonts.gstatic.com" crossorigin>
+    <link herf="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel=""styleesheet" herf="Core Landing Page/BaseStyles.css">
+    <link rel=""styleesheet" herf="Core Landing Page/Navbar.css">
+    <link rel=""styleesheet" herf="Landing Content/FeaturesAbout.css">
+    <link rel=""styleesheet" herf="Landing Content/MediaQueries.css">
+
+    <link rel ="stylesheet" herf="Authentication UI/FormStyles.css">
+    <link rel="stylesheet" herf="Client Dashboard/DashboardCardStyles.css">
+    <link rel="stylesheet" herf="Manager Dashboard/QueueTimerStyles.css">
+
+    <script>
+        if(localStorage.getItem("fq-theme")== 'dark'){
+            doucument.documetElement.style.backgroundColor='#0d1117';
+        }
+    </script>
+
+</head>
+ <nav class="navbar">
+    <div class="nav-inner">
+        <span class="logo">FastQ</span>
+        <ul class="nav-links">
+            <li><a herf="index.html">← Back to Site</a></li>
+            <li>
+                <button class="drak-toggle" onclick="toggleDark()">
+                    <span class="dark-knob" id="dark-knob">🌙</span>
+                </button>
+            </li>
+            <li>
+                <botton class="btn-nav-cta" id="nav-logout" style="display:none;" onclick="logouttoGateway()">
+                    logout
+                </botton>
+            </li>
+        </ul>
+    </div>
+ </nav>
+ <div class="app-wrap">
+    <section id="gateway-view" class="view active">
+        <div class="gateway-inner">
+            <h1>Welcome to fastQ</h1>
+            <p>Select your portal to coutinue</p>
+            <div class="role-cards">
+                <div class="role-card" onclick="navigateTo('auth-view','client')">
+                    <span class="role-icon">👤</span>
+                    <h2>I am a client</h2>
+                </div>
+                <div class="role-card" onclick="navigateTo('auth-view','host')">
+                    <span class="role-icon">🏢</span>
+                    <h2>I am a Host</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <section id="auth-view" class="view">
+        <div class ="auth-card card">
+            <button class="btn-back" onclick="navigateTo(gateway-view)">← Back</button>
+            <h2>Access Portal</h2>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" id="login-tab" onclick="switchTab('login')">Login</button>
+                <button class="tab-btn" id="signup-tab" onclick="switchTab('signup')">Sign up</button>
+            </div>
+
+            <form onsubmit="handleAuth(event)">
+                <div id="signup-fields" class="signup-fields hidden">
+                <div class="input-row">
+                    <div class="input-group">
+                        <input type="text" id="first-name" placeholder="First Name">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="Last-name" placeholder="Last Name">
+                    </div>
+                </div>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-form" id="auth-submit">Login</button>
+            </form>
+            <div class="social-login">
+                <div class="social-btns">
+                    <button class="btn-social">G</button>
+                    <button class="btn-social">⌘</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+<body>
+   
+</body>
+</html>
+
