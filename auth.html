@@ -153,17 +153,92 @@
                 <span>Service Duration Buffer</span>
                 <div class="buffer-ctrl">
                     <button class="btn-circle" onclick="adjustBuffer(-5)">−</button>
-                    <span id="buffer-val">10</span>m
-                    
+                    <span id="buffer-val">10</span>m 
+                    <button class="btn-circle" onclick="adjustBuffer(5)">+</button>
                 </div>
             </li>
         </ul>
     </div>
 
+    <div class="card">
+        <h4>Client-Facing Features</h4>
+        <p class="hint">Only enabled features are shown to clients when booking</p>
+        <ul class="toggle-list">
+            <li>
+                <span>🔔 AI-Driven Reminders</span>
+                <label class="switch">
+                    <input type="checkbox" id="feat-ai" checked>
+                    <span class="switch-slider"></span>
+                </label>
+            </li>
+            <li>
+                <span>💳 Payment Methods</span>
+                <label class="switch">
+                    <input type="checkbox" id="feat-pay" checked>
+                    <span class="switch-slider"></span>
+                </label>
+            </li>
+            <li>
+                 <span>👨‍⚕️ Doctor / Instructor Selection</span>
+                <label class="switch">
+                    <input type="checkbox" id="feat-doc">
+                    <span class="switch-slider"></span>
+                </label>
+            </li>
+            <li>
+                  <span>📍Arrival Time Tracking</span>
+                <label class="switch">
+                    <input type="checkbox" id="feat-arr">
+                    <span class="switch-slider"></span>
+                </label>
+            </li>
+            <li>
+                 <span>⏱ Duration Estimate</span>
+                <label class="switch">
+                    <input type="checkbox" id="feat-dur" checked>
+                    <span class="switch-slider"></span>
+                </label>
+            </li>
+
+            <li>
+                 <span>📧 Email Reminders</span>
+                <label class="switch">
+                    <input type="checkbox" id="feat-email">
+                    <span class="switch-slider"></span>
+                </label>
+            </li>
+        </ul>
+    </div>
+    
+    <button class="btn-publish" onclick="publishBusiness()">🚀 Publish Business</button>
+    </section>
+     
+    <section id="host-manager"  class="view">
+        <div class="view-header">
+            <button class="btn-back" onclick="navigateTo('host-dashboard')">←</button>
+            <div>
+                <h3 id="bm-name">Business Name</h3>
+                <span class="hint" id="bm-sector"></span>
+            </div>
+            <button class="btn-logout" onclick="logoutToGateway()">Logout</button>
+        </div>
+
+        <div class="stats-row">
+            <div class="card stat-card">
+                <span class="stat-num" id="bm-total">0</span>
+                <span class="stat-label">Total Bookings</span>
+            </div>
+            <div class="card stat-card" >
+                <span class="stat-num" id="bm-waiting">0</span>
+                <span class="stat-label">In Queue</span>
+            </div>
+        </div>
 
 
     </section>
-     
+    
+
+  
     
 <body>
 
