@@ -233,8 +233,37 @@
                 <span class="stat-label">In Queue</span>
             </div>
         </div>
+       
+        <div class="card">
+            <h4>Live Operations</h4>
+            <div class="ops-row">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span>🔴 Delay Broadcast</span>
+                    <label class="switch">
+                        <input type="checkbox" id="bm-delay-toggle" onchange="toggleDelay()">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <button class="btn-secondary" onclick="senderEarlyBlast()">Early Arrival Blast 🚀</button>
+            </div>
+            <div class="delay-msg-box" id="delay-msg-box">
+                <div class="input-group" style="margin-top:10px; margin-bottom: 8px;">
+                    <input type="text" id="delay-msg-input" placeholder="e.g Running 15 min late...">
+                </div>
+                <button class="btn-small" onclick="sendDelay()">Send to All Clients</button>
+            </div>
+        </div>
 
+        <div class="card">
+            <h4>Slot Overview</h4>
+            <p class="hint" id="bm-location"></p>
+            <div id="bm-slots"></div>
+        </div>
 
+        <div class="card">
+            <h4>Booking Queue</h4>
+            <div id="bm-queue"></div>
+        </div>
     </section>
     
 
