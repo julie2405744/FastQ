@@ -24,6 +24,8 @@
     </script>
 
 </head>
+
+<body>
  <nav class="navbar">
     <div class="nav-inner">
         <span class="logo">FastQ</span>
@@ -43,6 +45,7 @@
     </div>
  </nav>
  <div class="app-wrap">
+
     <section id="gateway-view" class="view active">
         <div class="gateway-inner">
             <h1>Welcome to fastQ</h1>
@@ -50,7 +53,7 @@
             <div class="role-cards">
                 <div class="role-card" onclick="navigateTo('auth-view','client')">
                     <span class="role-icon">👤</span>
-                    <h2>I am a client</h2>
+                    <h2>I am a Client</h2>
                 </div>
                 <div class="role-card" onclick="navigateTo('auth-view','host')">
                     <span class="role-icon">🏢</span>
@@ -266,11 +269,120 @@
         </div>
     </section>
     
+    <section id="user-dashboard" class="view">
+            <div class="view-header">
+                <h3>Discover</h3>
+                <button class="btn-logout" onclick="logoutToGateway()">Logout</button>
+            </div>
+            <div class="category-grid" id="category-grid"></div>
+            <div class="card">
+                <h4>My Calendar</h4>
+                <div id="calendar-list">
+                    <p class="calendar-empty">No appointments yet. Book one above!</p>
+                </div>
+            </div>
+        </section>
 
-  
+
+         <section id="provider-view" class="view">
+            <div class="view-header">
+                <button class="btn-back" onclick="navigateTo('user-dashboard')">←</button>
+                <h3>Select Provider</h3>
+            </div>
+            <div id="provider-list"></div>
+        </section>
+
+         <section id="live-view" class="view">
+            <div class="view-header">
+                <button class="btn-back" onclick="navigateTo('user-dashboard')">←</button>
+                <h3>Live Journey</h3>
+            </div>
+
+            <div class="stepper">
+                <div class="step done" id="step-booked">Booked</div>
+                <div class="step active" id="step-transit">In Transit</div>
+                <div class="step" id="step-lobby">In Lobby</div>
+                <div class="step" id="step-session">In Session</div>
+            </div>
+
+            <div class="timer-wrap">
+                <div class="timer-circle">
+                    <span id="countdown">--:--</span>
+                    <span class="timer-label" id="timer-label">Calculating...</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Transit Customization</h4>
+                <div class="custom-row" style="margin-top:10px;">
+                    <label>Personal Buffer</label>
+                    <input type="range" min="0" max="30" value="5" class="slider-input" id="transit-slider"
+                        oninput="updateBuffer()">
+                    <span id="buffer-display">5m</span>
+                </div>
+                <div class="custom-row">
+                    <label>Commute Mode</label>
+                    <div class="mode-toggle">
+                        <button class="mode-btn active" id="mode-drive" onclick="setMode('driving')">🚗 Drive</button>
+                        <button class="mode-btn" id="mode-walk" onclick="setMode('walking')">🚶 Walk</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <span class="alert-icon">⚠️</span>
+                <p id="traffic-msg">Moderate traffic. Check buffer time above.</p>
+            </div>
+
+            <div class="live-actions">
+                <button class="btn-late" onclick="reportLate()">Running Late 🏃💨</button>
+                <button class="btn-checkin" onclick="checkIn()">Arrived (Geofence)</button>
+            </div>
+
+            <div class="card queue-status">
+                <h4>Queue Status</h4>
+                <p>You are <strong>#1</strong> in the Queue.</p>
+                <p style="margin-top:4px;">Estimated wait: <strong>~5 mins</strong></p>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="modal-overlay hidden" id="modal">
+        <div class="modal-sheet">
+            <h4>Book Appointment</h4>
+
+            <div id="feature-tags"></div>
+           
+            <div class="input-group" style="margin-bottom:4px;">
+                <label class="hint" style="display:block; margin-bottom:6px;">Choose Service:</label>
+                <select id="service-select" onchange="updateService()"></select>
+            </div>
     
-<body>
+            <p style="font-size:0.8rem; color:#9ca3af; margin:12px 0 8px;">Select a Time Slot:</p>
+            <div class="time-slots" id="time-slots"></div>
+         
+            <div class="legend">
+                <span class="legend-item"><span class="dot green"></span> Optimal</span>
+                <span class="legend-item"><span class="dot yellow"></span> Peak Hours</span>
+            </div>
+           
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn-form" onclick="confirmBooking()">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
 
+    <script src="Manager Dashboard/TimeCalculation.js"></script>
+    <script src="Manager Dashboard/CountdownInterval.js"></script>
+
+    <script src="Client Dashboard/DataRender.js"></script>
+    <script src="Client Dashboard/BookingConfirmation.js"></script>
+    
+    <script src="Authentication UI/LoginSignupToggle.js"></script>
+    <script src="Authentication UI/ValidationLogic.js"></script>
+    
 </body>
 </html>
 
