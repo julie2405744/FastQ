@@ -128,7 +128,7 @@ body.dark .dark-knob{
 }
 
 .hero h1 {
-    front-size: 3rem;
+    font-size: 3rem;
     line-height: 1.15;
     margin-bottom: 18px;
     color: #1a1f2e;
@@ -139,7 +139,7 @@ body.dark .hero h1{
 }
 
 .hero p{
-    front-size: 1.1rem;
+    font-size: 1.1rem;
     color: #6b7280;
     margin-bottom: 32px;
     line-height: 1.6;
@@ -149,6 +149,103 @@ body.dark .hero h1{
 body.dark .hero p {
     color: #8b949e;
 }
+
+.blob{
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.12;
+    animation: blobMove 10s ease-in-out infinite alternate;
+}
+
+.blob-1{
+    width: 400px;
+    height: 400px;
+    background-color: #5a9ef5;
+    top: -70px;
+    right: -70px;
+}
+
+.blob-2{
+    width: 360px;
+    height: 360px;
+    background-color: #9b7fe8;
+    bottom: -50px;
+    left: -50px;
+    animation-delay: -5s;
+}
+
+body.dark .blob{
+    opacity: 0.07;
+}
+
+@keyframes blobMove {
+    from{
+        transform: translate(0,0) scale(1);
+    }
+    to{
+        transform: translate(28px, 28px) scale(1.08);
+    }
+}
+
+.btn-primary{
+    background-color: #5a9ef5;
+    color: white;
+    border: none;
+    padding: 13px 38px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor:pointer;
+    transition: background-color 0.25s, transform 0.2s
+
+}
+
+.btn-primary:hover{
+    background-color: #3d87f0;
+    transform: translateY(-2px);
+}
+
+.btn-secondary{
+    background-color: transparent;
+    color:#6b7280;
+    border: 1px solid #d1d5db;
+    padding: 9px 18px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: border-color 0.25s, color 0.25s;
+}
+
+body.dark .btn-secondary{
+    color:#8b949e;
+    border-color:#30363d;
+}
+
+.btn-secondary:hover{
+    border-color:#5a9ef5;
+    color:#5a9ef5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
