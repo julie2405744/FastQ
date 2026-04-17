@@ -10,6 +10,7 @@ function toggleDark() {
     localStorage.setItem('fq-theme', isDark ? 'dark' : 'light');
 }
 
+
 window.addEventListener('storage', function (e) {
     if (e.key === 'fq-theme') {
         var isDark = e.newValue === 'dark';
@@ -18,16 +19,20 @@ window.addEventListener('storage', function (e) {
     }
 });
 
+
 function navigateTo(viewId, role) {
+    // Set role if provided
     if (role !== undefined) {
         state.role = role;
     }
 
+   
     var allViews = document.querySelectorAll('.view');
     for (var i = 0; i < allViews.length; i++) {
         allViews[i].classList.remove('active');
     }
-    
+
+   
     var target = document.getElementById(viewId);
     if (target) {
         target.classList.add('active');
@@ -35,8 +40,10 @@ function navigateTo(viewId, role) {
 
     window.scrollTo(0, 0);
 
+    
+    
     if (viewId === 'gateway-view') {
-        if (typeof timerInterval !== 'undefined' && timerInterval) {
+        if (timerInterval) {
             clearInterval(timerInterval);
             timerInterval = null;
         }
@@ -44,6 +51,7 @@ function navigateTo(viewId, role) {
         state.currentBizIndex = null;
         document.getElementById('nav-logout').style.display = 'none';
 
+       
         document.getElementById('auth-submit').textContent = 'Login';
         document.getElementById('login-tab').classList.add('active');
         document.getElementById('signup-tab').classList.remove('active');
@@ -53,23 +61,26 @@ function navigateTo(viewId, role) {
         state.isSignup = false;
     }
 
+    
     if (viewId === 'host-dashboard' || viewId === 'host-manager' ||
         viewId === 'user-dashboard' || viewId === 'provider-view' || viewId === 'live-view') {
         document.getElementById('nav-logout').style.display = 'inline-block';
     }
 
+    
     if (viewId === 'user-dashboard') {
-        if (typeof renderCategoryGrid === 'function') renderCategoryGrid();
-        if (typeof renderCalender === 'function') renderCalender();
+        renderCategoryGrid();
+        renderCalendar();
     }
     if (viewId === 'host-manager') {
-        if (typeof renderManager === 'function') renderManager();
+        renderManager();
     }
 }
 
 function logoutToGateway() {
-    navigateTo('gateway-view'); 
+    navigateTo('gateway-view');
 }
+
 
 function switchTab(mode) {
     state.isSignup = (mode === 'signup');
@@ -82,8 +93,6 @@ function switchTab(mode) {
     } else {
         document.getElementById('signup-fields').classList.add('hidden');
         document.getElementById('auth-submit').textContent = 'Login';
-        
-        
         document.getElementById('login-tab').classList.add('active');
         document.getElementById('signup-tab').classList.remove('active');
     }
