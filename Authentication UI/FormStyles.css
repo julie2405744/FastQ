@@ -1,28 +1,28 @@
-#auth-view{
-    justify-content:center;
-    align-items:center;
-    min-height:calc(100vh-68px);
+#auth-view {
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 68px);
 }
 
-.auth-card{
-    width:100%;
-    max-width:420px;
-    margin:auto;
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
 }
 
-.auth-card h2{
-    font-size:1.35rem;
-    margin-bottom:16px;
-    color:#1a1f2e;
+.auth-card h2 {
+    font-size: 1.35rem;
+    margin-bottom: 16px;
+    color: #1a1f2e;
 }
 
-body.dark .auth-card h2{
+body.dark .auth-card h2 {
     color: #e6edf3;
 }
 
-.auth-tabs{
-    display:flex;
-    background-color:#f3f4f6;
+.auth-tabs {
+    display: flex;
+    background-color: #f3f4f6;
     border-radius: 10px;
     padding: 4px;
     margin-bottom: 18px;
@@ -33,30 +33,30 @@ body.dark .auth-tabs {
     background-color: #21262d;
 }
 
-.tab-btn{
-    flex:1;
+.tab-btn {
+    flex: 1;
     padding: 9px;
     border: none;
     border-radius: 8px;
     background-color: transparent;
-    color:#6b7280;
-    font-size:0.9rem;
-    font-weight:500;
-    cursor:pointer;
-    transition:background-color 0.25s, color 0.25s;
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.25s, color 0.25s;
 }
 
 body.dark .tab-btn {
     color: #8b949e;
 }
 
-.tab-btn.active{
-    background-color:#ffffff;
-    color:#1a1f2e;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.08);
+.tab-btn.active {
+    background-color: #ffffff;
+    color: #1a1f2e;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
-body.dark .tab-btn.active{
+body.dark .tab-btn.active {
     background-color: #30363d;
     color: #e6edf3;
 }
@@ -66,10 +66,10 @@ body.dark .tab-btn.active{
     margin-top: 18px;
 }
 
-.social-login p{
-    color:#9ca3af;
-    font-size:0.83rem;
-    margin-bottom:10px;
+.social-login p {
+    color: #9ca3af;
+    font-size: 0.83rem;
+    margin-bottom: 10px;
 }
 
 .social-btns {
@@ -103,52 +103,51 @@ body.dark .btn-social {
     color: white;
 }
 
-
-.hint{
-    font-size:0.78rem;
-    color:#9ca3af;
+.hint {
+    font-size: 0.78rem;
+    color: #9ca3af;
     margin-bottom: 10px;
     display: block;
 }
 
-.sector-row{
-    display:flex;
+.sector-row {
+    display: flex;
     justify-content: space-around;
     padding: 8px 0;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
-.sector-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-    cursor:pointer;
-    color:#9ca3af;
-    opacity:0.6;
-    font-size:0.8rem;
-    transition:opacity 0.25s,color 0.25s,transform 0.25s;
+.sector-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    color: #9ca3af;
+    opacity: 0.6;
+    font-size: 0.8rem;
+    transition: opacity 0.25s, color 0.25s, transform 0.25s;
     padding: 8px 10px;
-    border-radius:10px;
+    border-radius: 10px;
 }
 
 .sector-item:hover,
-.sector-item.active{
-    opacity:1;
-    color:#5a9ef5;
-    transform:scale(1.1);
+.sector-item.active {
+    opacity: 1;
+    color: #5a9ef5;
+    transform: scale(1.1);
 }
 
-.sector-icon{
-    font-size:1.8rem;
+.sector-icon {
+    font-size: 1.8rem;
 }
 
-.slor-wrap{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:10px;
+.slor-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 
 .slot-tag {
@@ -163,16 +162,16 @@ body.dark .btn-social {
     color: #1a1f2e;
 }
 
-body.dark .slot-tag{
-    background-color:#21262d;
-    border-color:#30363d;
-    color:#e6edf3;
+body.dark .slot-tag {
+    background-color: #21262d;
+    border-color: #30363d;
+    color: #e6edf3;
 }
 
-.slot-tag .remove{
-color:#e84040;
-cursor:pointer;
-font-weight:700;
+.slot-tag .remove {
+    color: #e84040;
+    cursor: pointer;
+    font-weight: 700;
 }
 
 .slot-tag .remove:hover {
@@ -200,7 +199,6 @@ font-weight:700;
     outline: none;
     transition: border-color 0.25s;
 }
-
 
 body.dark .slot-add-row input[type="date"],
 body.dark .slot-add-row input[type="time"] {
@@ -248,4 +246,3 @@ body.dark .toggle-list li {
 body.dark .buffer-ctrl {
     color: #e6edf3;
 }
-
