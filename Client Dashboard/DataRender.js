@@ -178,3 +178,133 @@ function publishBusiness() {
 
     navigateTo('host-manager');
 }
+
+//  business manger
+function renderManager() {
+    var idx = state.currentBizIndex;
+    if (idx === null || idx === undefined) return;
+    var biz = state.businesses[idx];
+    if (!biz) return;
+
+    document.getElementById('bm-name').textContent = biz.name;
+    document.getElementById('bm-sector').textContent = biz.sector + ' · ' + biz.location;
+    document.getElementById('bm-location').textContent = biz.location;
+
+    var waitingCount = 0;
+    for (var i = 0; i < biz.appointments.length; i++) {
+        if (biz.appointments[i].status === 'waiting') waitingCount++;
+    }
+    document.getElementById('bm-total').textContent = biz.appointments.length;
+    document.getElementById('bm-waiting').textContent = waitingCount;
+
+    document.getElementById('bm-delay-toggle').checked = biz.delayActive;
+    var msgBox = document.getElementById('delay-msg-box');
+    if (biz.delayActive) {
+        msgBox.classList.add('visible');
+    } else {
+        msgBox.classList.remove('visible');
+    }
+
+    renderSlotOverview(biz);
+    renderQueue(biz);
+}
+
+function renderSlotOverview(biz) {
+    var container = document.getElementById('bm-slots');
+    container.innerHTML = '';
+
+    for (var i = 0; i < biz.slots.length; i++) {
+        var slot = biz.slots[i];
+        var label = slotLabel(slot);
+
+        var booked = 0;
+        for (var j = 0; j < biz.appointments.length; j++) {
+            if (biz.appointments[j].slotLabel === label) booked++;
+        }
+
+        var row = document.createElement('div');
+        row.className = 'slot-overview-row';
+        row.innerHTML = '<span>' + label + '</span>'
+            + '<span class="slot-booked-count">' + booked + ' booked</span>';
+        container.appendChild(row);
+    }
+}
+
+function renderQueue(biz) {
+    var container = document.getElementById('bm-queue');
+    container.innerHTML = '';
+
+    if (biz.appointments.length === 0) {
+        container.innerHTML = '<p class="empty-msg">No bookings yet.</p>';
+        return;
+    }
+
+    var bizIdx = state.currentBizIndex;
+
+    for (var i = 0; i < biz.appointments.length; i++) {
+        var apt = biz.appointments[i];
+        var item = document.createElement('div');
+        item.className = 'queue-item';
+
+        var actionBtns = '';
+        if (apt.status === 'waiting') {
+            actionBtns = '<button class="btn-small" onclick="startSession(' + bizIdx + ',' + i + ')">Start</button>'
+                + '<button class="btn-remove" onclick="removeBooking(' + bizIdx + ',' + i + ')">✕</button>';
+        } else if (apt.status === 'in-session') {
+            actionBtns = '<button class="btn-small" onclick="finishSession(' + bizIdx + ',' + i + ')">Done ✓</button>';
+        }
+
+        item.innerHTML = '<span class="q-pos">#' + (i + 1) + '</span>'
+            + '<div class="q-info">'
+            + '<strong>' + apt.clientName + '</strong>'
+            + '<span>' + apt.service + '</span>'
+            + '<span>' + apt.slotLabel + '</span>'
+            + '</div>'
+            + '<div class="q-actions">'
+            + '<span class="badge ' + apt.status + '">' + apt.status.replace('-', ' ') + '</span>'
+            + actionBtns
+            + '</div>';
+
+        container.appendChild(item);
+    }
+}
+
+function startSession(bizIdx, aptIdx) {
+    state.businesses[bizIdx].appointments[aptIdx].status = 'in-session';
+    renderManager();
+}
+
+function finishSession(bizIdx, aptIdx) {
+    state.businesses[bizIdx].appointments[aptIdx].status = 'done';
+    renderManager();
+}
+
+function removeBooking(bizIdx, aptIdx) {
+    state.businesses[bizIdx].appointments.splice(aptIdx, 1);
+    renderManager();
+}
+
+function toggleDelay() {
+    var biz = state.businesses[state.currentBizIndex];
+    biz.delayActive = document.getElementById('bm-delay-toggle').checked;
+    var msgBox = document.getElementById('delay-msg-box');
+    if (biz.delayActive) {
+        msgBox.classList.add('visible');
+    } else {
+        msgBox.classList.remove('visible');
+    }
+}
+
+function sendDelay() {
+    var biz = state.businesses[state.currentBizIndex];
+    biz.delayMessage = document.getElementById('delay-msg-input').value.trim();
+    if (biz.delayMessage) {
+        alert('Delay notification sent to all clients:\n"' + biz.delayMessage + '"');
+    } else {
+        alert('Delays cleared. Clients have been notified.');
+    }
+}
+
+function sendEarlyBlast() {
+    alert('📢 In-transit clients have been notified to arrive early!');
+}
