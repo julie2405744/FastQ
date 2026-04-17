@@ -7,7 +7,7 @@
     transition: transform 0.25s, box-shadow 0.25s;
 }
 
-body.dark.card{
+body.dark .card{
     background-color: #161b22;
     border-color: #30363d;
 }
@@ -17,7 +17,7 @@ body.dark.card{
     box-shadow:0 8px 28px rgba(0,0,0,0.08);
 }
 
-body.dark.card:hover{
+body.dark .card:hover{
     box-shadow:0 8px 28px rgba(0,0,0,0.4);
 }
 
@@ -53,8 +53,8 @@ body.dark .card h4 {
     color:#1a1f2e;
     font-size: 0.93rem;
     font-family: inherit;
-    outline:none;
-    transition: border-color 0.25s,box-shadow 0.25s;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
 }
 
 body.dark .input-group input, body.dark .input-group select{
@@ -220,7 +220,7 @@ body.dark .about-card p {
     animation: fadeIn 0.35s ease-out;
 }
 
-.view-active{
+.view.active{
     display:flex;
 }
 
@@ -265,11 +265,11 @@ body.dark .view-header h3{
 .gateway-inner h1{
     font-size: 2.4rem;
     margin-bottom: 10px;
-    color:#1a1f2e
+    color:#1a1f2e;
 }
 
 body.dark .gateway-inner h1{
-    color:#e6edf3
+    color:#e6edf3;
 }
 
 .gateway-inner p{
