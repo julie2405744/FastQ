@@ -1,4 +1,12 @@
 
+var state = {
+    role: null,
+    currentBizIndex: null,
+    isSignup: false,
+    clientName: ''
+};
+
+var timerInterval = null; 
 if (localStorage.getItem('fg-theme') === 'dark') {
     document.body.classList.add('dark');
     document.getElementById('dark-knob').textContent = '☀️';
@@ -15,7 +23,7 @@ function toggleDark() {
 
 window.addEventListener('storage', function(e) {
     if (e.key === 'fg-theme') {
-        // 4. Fixed 'newvalue' to 'newValue'
+        
         var isDark = (e.newValue === 'dark');
         document.body.classList.toggle('dark', isDark);
         document.getElementById('dark-knob').textContent = isDark ? '☀️' : '🌙';
@@ -73,7 +81,7 @@ function navigateTo(viewId, role) {
 }
 
 function logoutToGateway() {
-    navigateTo('gateway-view'); // Updated to match navigateTo
+    navigateTo('gateway-view'); 
 }
 
 function switchTab(mode) {
@@ -88,7 +96,7 @@ function switchTab(mode) {
         document.getElementById('signup-fields').classList.add('hidden');
         document.getElementById('auth-submit').textContent = 'Login';
         
-        // 5. Fixed logic: Add active to login, remove from signup
+        
         document.getElementById('login-tab').classList.add('active');
         document.getElementById('signup-tab').classList.remove('active');
     }
