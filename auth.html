@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FastQ — Portal</title>
-    <link rel="preconnect" herf="https://fonts.googleapis.com">
-    <link rel="preconnect" herf="https://fonts.gstatic.com" crossorigin>
-    <link herf="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel=""styleesheet" herf="Core Landing Page/BaseStyles.css">
-    <link rel=""styleesheet" herf="Core Landing Page/Navbar.css">
-    <link rel=""styleesheet" herf="Landing Content/FeaturesAbout.css">
-    <link rel=""styleesheet" herf="Landing Content/MediaQueries.css">
+    <link rel="stylesheet" href="Core Landing Page/BaseStyles.css">
+    <link rel="stylesheet" href="Core Landing Page/Navbar.css">
+    <link rel="stylesheet" href="Landing Content/FeaturesAbout.css">
+    <link rel="styleesheet" href="Landing Content/MediaQueries.css">
 
-    <link rel ="stylesheet" herf="Authentication UI/FormStyles.css">
-    <link rel="stylesheet" herf="Client Dashboard/DashboardCardStyles.css">
-    <link rel="stylesheet" herf="Manager Dashboard/QueueTimerStyles.css">
+    <link rel ="stylesheet" href="Authentication UI/FormStyles.css">
+    <link rel="stylesheet" href="Client Dashboard/DashboardCardStyles.css">
+    <link rel="stylesheet" href="Manager Dashboard/QueueTimerStyles.css">
 
     <script>
         if(localStorage.getItem("fq-theme")== 'dark'){
-            doucument.documetElement.style.backgroundColor='#0d1117';
+            document.documetElement.style.backgroundColor='#0d1117';
         }
     </script>
 
@@ -30,16 +30,16 @@
     <div class="nav-inner">
         <span class="logo">FastQ</span>
         <ul class="nav-links">
-            <li><a herf="index.html">← Back to Site</a></li>
+            <li><a href="index.html">← Back to Site</a></li>
             <li>
-                <button class="drak-toggle" onclick="toggleDark()">
+                <button class="darkk-toggle" onclick="toggleDark()">
                     <span class="dark-knob" id="dark-knob">🌙</span>
                 </button>
             </li>
             <li>
-                <botton class="btn-nav-cta" id="nav-logout" style="display:none;" onclick="logouttoGateway()">
+                <button class="btn-nav-cta" id="nav-logout" style="display:none;" onclick="logouttoGateway()">
                     logout
-                </botton>
+                </button>
             </li>
         </ul>
     </div>
@@ -49,7 +49,7 @@
     <section id="gateway-view" class="view active">
         <div class="gateway-inner">
             <h1>Welcome to fastQ</h1>
-            <p>Select your portal to coutinue</p>
+            <p>Select your portal to continue</p>
             <div class="role-cards">
                 <div class="role-card" onclick="navigateTo('auth-view','client')">
                     <span class="role-icon">👤</span>
@@ -65,7 +65,7 @@
  
     <section id="auth-view" class="view">
         <div class ="auth-card card">
-            <button class="btn-back" onclick="navigateTo(gateway-view)">← Back</button>
+            <button class="btn-back" onclick="navigateTo('gateway-view')">← Back</button>
             <h2>Access Portal</h2>
 
             <div class="auth-tabs">
@@ -104,7 +104,7 @@
     <section id="host-dashboard" class = "view">
         <div class ="view-header">
             <h3>Host Dashboard</h3>
-            <button class ="btn=logout" onclick="logoutToGateway()">Logout</button>
+            <button class ="btn-logout" onclick="logoutToGateway()">Logout</button>
         </div>
     
         <div class ="card">
