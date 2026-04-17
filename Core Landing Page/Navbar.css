@@ -15,6 +15,9 @@ body.dark .navbar{
     background-color: rgba(13,17,23,0.95);
     border-color: #30363d;
 }
+body.dark .nav-links a {
+    color: #e6edf3;
+}
 
 .nav-inner{
     width: 100%;
@@ -371,50 +374,3 @@ body.dark .btn-circle{
     background-color: #5a9ef5;
     color: white;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

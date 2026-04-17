@@ -6,7 +6,7 @@
     <title>FastQ — Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link herf="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="Core Landing Page/BaseStyles.css">
     <link rel="stylesheet" href="Core Landing Page/Navbar.css">
@@ -32,7 +32,7 @@
         <ul class="nav-links">
             <li><a href="index.html">← Back to Site</a></li>
             <li>
-                <button class="drak-toggle" onclick="toggleDark()">
+                <button class="dark-toggle" onclick="toggleDark()">
                     <span class="dark-knob" id="dark-knob">🌙</span>
                 </button>
             </li>
@@ -49,7 +49,7 @@
     <section id="gateway-view" class="view active">
         <div class="gateway-inner">
             <h1>Welcome to fastQ</h1>
-            <p>Select your portal to coutinue</p>
+            <p>Select your portal to continue</p>
             <div class="role-cards">
                 <div class="role-card" onclick="navigateTo('auth-view','client')">
                     <span class="role-icon">👤</span>
@@ -105,7 +105,7 @@
     <section id="host-dashboard" class = "view">
         <div class ="view-header">
             <h3>Host Dashboard</h3>
-            <button class ="btn=logout" onclick="logoutToGateway()">Logout</button>
+            <button class ="btn-logout" onclick="logoutToGateway()">Logout</button>
         </div>
     
         <div class ="card">
