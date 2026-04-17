@@ -311,3 +311,227 @@ body.dark .apt-info p {
         box-shadow: 0 0 0 0 rgba(90, 158, 245, 0);
     }
 }
+/*provider list*/
+.provider-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.provider-info h4 {
+    font-size: 0.98rem;
+    margin-bottom: 3px;
+    color: #1a1f2e;
+}
+
+body.dark .provider-info h4 {
+    color: #e6edf3;
+}
+
+.provider-info p {
+    font-size: 0.76rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+body.dark .provider-info p {
+    color: #8b949e;
+}
+
+.delay-banner {
+    background-color: rgba(245, 166, 35, 0.1);
+    border: 1px solid #f5a623;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.76rem;
+    color: #f5a623;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+/* =============================================
+   BOOKING MODAL  (position:fixed)
+============================================= */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 200;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-sheet {
+    width: 100%;
+    max-width: 580px;
+    background-color: #ffffff;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 24px 36px;
+    border-top: 1px solid #e5e7eb;
+    animation: slideUp 0.3s ease-out;
+}
+
+body.dark .modal-sheet {
+    background-color: #161b22;
+    border-color: #30363d;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.modal-sheet h4 {
+    font-size: 1rem;
+    color: #1a1f2e;
+    margin-bottom: 10px;
+}
+
+body.dark .modal-sheet h4 {
+    color: #e6edf3;
+}
+
+.feature-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.feat-tag {
+    background-color: rgba(90, 158, 245, 0.1);
+    color: #5a9ef5;
+    border: 1px solid #5a9ef5;
+    border-radius: 20px;
+    padding: 3px 9px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.time-slots {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0 14px;
+    flex-wrap: wrap;
+}
+
+.time-slot {
+    flex: 1;
+    min-width: 82px;
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.83rem;
+    color: #1a1f2e;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+body.dark .time-slot {
+    background-color: #21262d;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+
+.time-slot small {
+    font-size: 0.66rem;
+    color: #9ca3af;
+}
+
+.time-slot:hover {
+    border-color: #5a9ef5;
+    background-color: rgba(90, 158, 245, 0.07);
+}
+
+.time-slot.peak {
+    border-left: 3px solid #f5a623;
+}
+
+.time-slot.low {
+    border-left: 3px solid #3ecf6e;
+}
+
+.time-slot.selected {
+    background-color: #5a9ef5;
+    border-color: #5a9ef5;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(90, 158, 245, 0.35);
+}
+
+.time-slot.selected small {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.slot-date-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #5a9ef5;
+    text-transform: uppercase;
+}
+
+.time-slot.selected .slot-date-tag {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.legend {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    font-size: 0.72rem;
+    color: #9ca3af;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.green {
+    background-color: #3ecf6e;
+}
+
+.dot.yellow {
+    background-color: #f5a623;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-actions .btn-secondary {
+    flex: 1;
+}
+
+.modal-actions .btn-form {
+    flex: 2;
+    margin-top: 0;
+}
+
