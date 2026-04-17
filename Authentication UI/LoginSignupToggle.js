@@ -1,4 +1,3 @@
-
 if (localStorage.getItem('fq-theme') === 'dark') {
     document.body.classList.add('dark');
     document.getElementById('dark-knob').textContent = '☀️';
@@ -8,17 +7,19 @@ function toggleDark() {
     document.body.classList.toggle('dark');
     var isDark = document.body.classList.contains('dark');
     document.getElementById('dark-knob').textContent = isDark ? '☀️' : '🌙';
-    localStorage.setItem('fg-theme', isDark ? 'dark' : 'light');
-}
-
-window.addEventListener('storage', function(e) {
-    if (e.key === 'fq-theme') {
     localStorage.setItem('fq-theme', isDark ? 'dark' : 'light');
 }
 
+<<<<<<<<< Temporary merge branch 1
 window.addEventListener('storage', function(e) {
-    if (e.key === 'fq-theme') {
+    if (e.key === 'fg-theme') {
+        
         var isDark = (e.newValue === 'dark');
+=========
+window.addEventListener('storage', function (e) {
+    if (e.key === 'fq-theme') {
+        var isDark = e.newValue === 'dark';
+>>>>>>>>> Temporary merge branch 2
         document.body.classList.toggle('dark', isDark);
         document.getElementById('dark-knob').textContent = isDark ? '☀️' : '🌙';
     }
