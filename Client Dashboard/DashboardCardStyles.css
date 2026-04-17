@@ -352,9 +352,7 @@ body.dark .provider-info p {
     width: 100%;
 }
 
-/* =============================================
-   BOOKING MODAL  (position:fixed)
-============================================= */
+/*booking modal*/
 .modal-overlay {
     position: fixed;
     inset: 0;
