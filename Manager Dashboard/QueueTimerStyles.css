@@ -42,14 +42,14 @@ body.dark .step{
     border-color: #30363d;
 }
 
-.step .active{
+.step.active{
     background-color: #5a9ef5;
     color:white;
     border-color:#5a9ef5;
     box-shadow: 0 2px 8ox rgba(90, 158, 245, 0.3);
 }
 
-.step .done{
+.step.done{
     background-color:#3ecf6e;
     color:white;
     border-color: #3ecf6e;
