@@ -75,3 +75,106 @@ var state = {
         }
     ]
 };
+
+// business setup
+function selectSector(el, sector) {
+    state.selectedSector = sector;
+    var items = document.querySelectorAll('.sector-item');
+    for (var i = 0; i < items.length; i++) {
+        items[i].classList.remove('active');
+    }
+    el.classList.add('active');
+}
+
+function addSlot() {
+    var dateVal = document.getElementById('slot-date').value;
+    var timeVal = document.getElementById('slot-time').value;
+
+    if (!dateVal || !timeVal) {
+        alert('Please choose both a date and a time.');
+        return;
+    }
+
+    var label = formatDate(dateVal) + ' · ' + formatTime(timeVal);
+    var wrap = document.getElementById('slots-wrap');
+
+    var tag = document.createElement('div');
+    tag.className = 'slot-tag';
+    tag.dataset.date = dateVal;
+    tag.dataset.time = timeVal;
+    tag.innerHTML = '<span>' + label + '</span>'
+        + '<span class="remove" onclick="this.parentElement.remove()">×</span>';
+    wrap.appendChild(tag);
+
+    // Clear inputs
+    document.getElementById('slot-date').value = '';
+    document.getElementById('slot-time').value = '';
+}
+
+function adjustBuffer(val) {
+    state.bufferTime = Math.max(0, state.bufferTime + val);
+    document.getElementById('buffer-val').textContent = state.bufferTime;
+}
+
+function getHostFeatures() {
+    return {
+        ai: document.getElementById('feat-ai').checked,
+        pay: document.getElementById('feat-pay').checked,
+        doc: document.getElementById('feat-doc').checked,
+        arr: document.getElementById('feat-arr').checked,
+        dur: document.getElementById('feat-dur').checked,
+        email: document.getElementById('feat-email').checked
+    };
+}
+
+function publishBusiness() {
+    var name = document.getElementById('business-name').value.trim();
+    var location = document.getElementById('business-location').value.trim();
+
+    if (!name) {
+        alert('Please enter a Business Name.');
+        return;
+    }
+
+    var slotTags = document.querySelectorAll('#slots-wrap .slot-tag');
+    var slots = [];
+    for (var i = 0; i < slotTags.length; i++) {
+        slots.push({
+            date: slotTags[i].dataset.date,
+            time: slotTags[i].dataset.time
+        });
+    }
+
+    if (slots.length === 0) {
+        alert('Please add at least one appointment slot.');
+        return;
+    }
+
+    var newBiz = {
+        name: name,
+        sector: state.selectedSector,
+        distance: location ? '—' : 'New',
+        status: 'Open Now',
+        location: location || 'Location not set',
+        slots: slots,
+        services: [
+            { name: 'General Appointment', duration: 30 },
+            { name: 'Consultation', duration: 20 },
+            { name: 'Follow-up', duration: 15 }
+        ],
+        features: getHostFeatures(),
+        appointments: [],
+        delayActive: false,
+        delayMessage: ''
+    };
+
+    state.businesses.push(newBiz);
+    state.currentBizIndex = state.businesses.length - 1;
+
+    // Reset the setup form
+    document.getElementById('business-name').value = '';
+    document.getElementById('business-location').value = '';
+    document.getElementById('slots-wrap').innerHTML = '';
+
+    navigateTo('host-manager');
+}
