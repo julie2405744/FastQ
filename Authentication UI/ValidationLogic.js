@@ -1,8 +1,7 @@
 function handleAuth(event) {
-    // 1. Fixed preventDefault
+    
     event.preventDefault(); 
     
-    // 2. Fixed .value
     var email = document.getElementById('email').value.trim(); 
     var password = document.getElementById('password').value;
 
@@ -11,7 +10,7 @@ function handleAuth(event) {
         return;
     }
     
-    // 3. Fixed state.isSignup casing and spelling
+    
     if (state.isSignup) { 
         var first = document.getElementById('first-name').value.trim();
         var last = document.getElementById('last-name').value.trim();

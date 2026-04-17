@@ -60,7 +60,7 @@ function navigateTo(viewId, role) {
 
     if (viewId === 'user-dashboard') {
         if (typeof renderCategoryGrid === 'function') renderCategoryGrid();
-        if (typeof renderCalendar === 'function') renderCalendar();
+        if (typeof renderCalender === 'function') renderCalender();
     }
     if (viewId === 'host-manager') {
         if (typeof renderManager === 'function') renderManager();
@@ -68,7 +68,7 @@ function navigateTo(viewId, role) {
 }
 
 function logoutToGateway() {
-    navigateTo('gateway-view'); // Updated to match navigateTo
+    navigateTo('gateway-view'); 
 }
 
 function switchTab(mode) {
@@ -82,6 +82,7 @@ function switchTab(mode) {
     } else {
         document.getElementById('signup-fields').classList.add('hidden');
         document.getElementById('auth-submit').textContent = 'Login';
+        
         
         document.getElementById('login-tab').classList.add('active');
         document.getElementById('signup-tab').classList.remove('active');
