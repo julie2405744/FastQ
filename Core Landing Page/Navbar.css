@@ -11,7 +11,7 @@
     align-items: center;
     padding: 0 5%;
 }
-body.dark.navbar{
+body.dark .navbar{
     background-color: rgba(13,17,23,0.95);
     border-color: #30363d;
 }
@@ -22,7 +22,7 @@ body.dark.navbar{
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-self: center;
+    align-items: center;
 
 }
 
@@ -50,7 +50,7 @@ body.dark.navbar{
 }
 
 .nav-links a:hover{
-    color: #5a9ef55a;
+    color: #5a9ef5;
 }
 
 .dark-toggle{
