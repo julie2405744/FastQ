@@ -308,3 +308,149 @@ function sendDelay() {
 function sendEarlyBlast() {
     alert('📢 In-transit clients have been notified to arrive early!');
 }
+
+//client booking
+var SECTOR_ICONS = { Clinic: '🏥', Bank: '🏦', Gym: '💪', Salon: '✂️', Other: '🏪' };
+
+function renderCategoryGrid() {
+    var grid = document.getElementById('category-grid');
+    grid.innerHTML = '';
+
+    var sectors = [];
+    for (var i = 0; i < state.businesses.length; i++) {
+        var s = state.businesses[i].sector;
+        if (sectors.indexOf(s) === -1) {
+            sectors.push(s);
+        }
+    }
+
+    for (var j = 0; j < sectors.length; j++) {
+        var sector = sectors[j];
+        var icon = SECTOR_ICONS[sector] || '🏪';
+        var btn = document.createElement('button');
+        btn.className = 'category-btn';
+        btn.innerHTML = '<span class="cat-icon">' + icon + '</span><span>' + sector + '</span>';
+
+        (function (sec) {
+            btn.onclick = function () { openProviders(sec); };
+        })(sector);
+
+        grid.appendChild(btn);
+    }
+}
+
+function renderCalendar() {
+    var container = document.getElementById('calendar-list');
+    container.innerHTML = '';
+
+    if (state.appointments.length === 0) {
+        container.innerHTML = '<p class="calendar-empty">No appointments yet. Book one above!</p>';
+        return;
+    }
+
+    var sorted = state.appointments.slice().sort(function (a, b) {
+        if (a.date !== b.date) return a.date > b.date ? 1 : -1;
+        return a.time > b.time ? 1 : -1;
+    });
+
+    for (var i = 0; i < sorted.length; i++) {
+        var apt = sorted[i];
+        var row = document.createElement('div');
+        row.className = 'appointment-row';
+
+        row.innerHTML =
+            '<div class="date-box">'
+            + '<span class="day">' + getDayNum(apt.date) + '</span>'
+            + '<span class="month">' + getMonthStr(apt.date) + '</span>'
+            + '</div>'
+            + '<div class="apt-info">'
+            + '<h5>' + apt.provider + '</h5>'
+            + '<p>' + apt.service + ' · ' + apt.duration + 'm</p>'
+            + '<p class="apt-time">🕐 ' + formatDate(apt.date) + ' at ' + formatTime(apt.time) + '</p>'
+            + '</div>'
+            + '<button class="btn-live" onclick="goLive(\'' + apt.provider + '\',\'' + apt.date + '\',\'' + apt.time + '\')">Live</button>';
+
+        container.appendChild(row);
+    }
+}
+
+function goLive(provider, date, time) {
+    state.currentProvider = provider;
+    navigateTo('live-view');
+    startCountdown(date, time);
+}
+function openProviders(sector) {
+    renderProviders(sector);
+    navigateTo('provider-view');
+}
+
+function renderProviders(sector) {
+    var container = document.getElementById('provider-list');
+    container.innerHTML = '';
+
+    var filtered = [];
+    for (var i = 0; i < state.businesses.length; i++) {
+        if (state.businesses[i].sector === sector) {
+            filtered.push(state.businesses[i]);
+        }
+    }
+
+    if (filtered.length === 0) {
+        container.innerHTML = '<p class="empty-msg">No providers in this category yet.</p>';
+        return;
+    }
+
+    for (var j = 0; j < filtered.length; j++) {
+        var biz = filtered[j];
+        var card = document.createElement('div');
+        card.className = 'card provider-item';
+
+        var delayHtml = '';
+        if (biz.delayActive && biz.delayMessage) {
+            delayHtml = '<div class="delay-banner">⚠️ Delay: ' + biz.delayMessage + '</div>';
+        }
+
+        card.innerHTML = delayHtml
+            + '<div class="provider-info">'
+            + '<h4>' + biz.name + '</h4>'
+            + '<p>' + biz.distance + ' away · ' + biz.status + '</p>'
+            + '<p>📍 ' + biz.location + '</p>'
+            + '</div>'
+            + '<button class="btn-small" style="flex-shrink:0;" onclick="openModal(\'' + biz.name.replace(/'/g, "\\'") + '\')">Book</button>';
+
+        container.appendChild(card);
+    }
+}
+
+function updateBuffer() {
+    var val = document.getElementById('transit-slider').value;
+    document.getElementById('buffer-display').textContent = val + 'm';
+    var msg = document.getElementById('traffic-msg');
+    if (val > 20) {
+        msg.textContent = 'Heavy traffic detected. Large buffer set — leave now!';
+    } else {
+        msg.textContent = 'Moderate traffic. Syncing with maps data...';
+    }
+}
+
+function setMode(mode) {
+    document.getElementById('mode-drive').classList.remove('active');
+    document.getElementById('mode-walk').classList.remove('active');
+    if (mode === 'driving') {
+        document.getElementById('mode-drive').classList.add('active');
+    } else {
+        document.getElementById('mode-walk').classList.add('active');
+    }
+}
+
+function reportLate() {
+    var provider = state.currentProvider || 'your provider';
+    alert('Host (' + provider + ') has been notified you are running late!');
+}
+
+function checkIn() {
+    document.getElementById('step-transit').classList.remove('active');
+    document.getElementById('step-transit').classList.add('done');
+    document.getElementById('step-lobby').classList.add('active');
+    alert('✅ Geofence confirmed! You are within 50m. Welcome!');
+}
