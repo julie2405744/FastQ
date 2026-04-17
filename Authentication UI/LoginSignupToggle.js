@@ -1,5 +1,5 @@
 
-if (localStorage.getItem('fg-theme') === 'dark') {
+if (localStorage.getItem('fq-theme') === 'dark') {
     document.body.classList.add('dark');
     document.getElementById('dark-knob').textContent = '☀️';
 }
@@ -10,12 +10,16 @@ function toggleDark() {
     
     
     document.getElementById('dark-knob').textContent = isDark ? '☀️' : '🌙';
-    localStorage.setItem('fg-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('fq-theme', isDark ? 'dark' : 'light');
 }
 
 window.addEventListener('storage', function(e) {
-    if (e.key === 'fg-theme') {
-        // 4. Fixed 'newvalue' to 'newValue'
+    if (e.key === 'fq-theme') {
+    localStorage.setItem('fq-theme', isDark ? 'dark' : 'light');
+}
+
+window.addEventListener('storage', function(e) {
+    if (e.key === 'fq-theme') {
         var isDark = (e.newValue === 'dark');
         document.body.classList.toggle('dark', isDark);
         document.getElementById('dark-knob').textContent = isDark ? '☀️' : '🌙';
@@ -65,7 +69,7 @@ function navigateTo(viewId, role) {
 
     if (viewId === 'user-dashboard') {
         if (typeof renderCategoryGrid === 'function') renderCategoryGrid();
-        if (typeof renderCalender === 'function') renderCalender();
+        if (typeof renderCalendar === 'function') renderCalendar();
     }
     if (viewId === 'host-manager') {
         if (typeof renderManager === 'function') renderManager();
@@ -88,7 +92,6 @@ function switchTab(mode) {
         document.getElementById('signup-fields').classList.add('hidden');
         document.getElementById('auth-submit').textContent = 'Login';
         
-        // 5. Fixed logic: Add active to login, remove from signup
         document.getElementById('login-tab').classList.add('active');
         document.getElementById('signup-tab').classList.remove('active');
     }
