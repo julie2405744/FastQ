@@ -26,7 +26,7 @@ function startCountdown(slotDate, slotTime){
             timerInterval=null;
             display.textContent='00:00';
             labelEl.textContent = '⏰ Time to go!';
-            alert('your appointment time has arrived -time to leave');
+            alert('Your appointment time has arrived -time to leave!');
             return;
         }
 

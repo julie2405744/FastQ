@@ -21,12 +21,12 @@ function formatTime(time24){
     var m =parts[1];
     var ampm = h >=12? 'PM':'AM';
     h = h % 12;
-    if(h==0)  h=12;
+    if(h===0)  h=12;
     return h +':'+m+' '+ampm;
 
 }
 
-function slotlabel(slot){
+function slotLabel(slot){
     return formatDate(slot.date)+' · ' +formatTime(slot.time);
     
 }
