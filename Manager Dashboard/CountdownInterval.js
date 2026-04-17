@@ -37,7 +37,7 @@ function startCountdown(slotDate, slotTime){
         var secs=totalSecs % 60;
 
         if(days>0){
-            display.textContent=days+(days===1? ' day  ' : ' days ');
+            display.textContent=days+(days===1? ' day ' : ' days ');
         }
         else if(hrs>0){
             display.textContent = 
